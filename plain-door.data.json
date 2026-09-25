@@ -1,0 +1,152 @@
+{
+  "version": "v0.5",
+  "scope": {
+    "gaps": "Still putting together old work for this. Coming soon!"
+  },
+  "items": [
+    {
+      "id": "ART-001",
+      "title": "Congressional oversight of frontier AI: a public-record tracker",
+      "room": "workshop",
+      "state": "BENCH",
+      "form": "DATA",
+      "doors": [
+        "LAWS"
+      ],
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-002",
+      "title": "Evaluating advocacy as a change strategy",
+      "room": "study",
+      "state": "HANG",
+      "form": "ESSAY",
+      "doors": [
+        "DEV"
+      ],
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-003",
+      "title": "Isegoria in Crisis (thesis)",
+      "room": "study",
+      "state": "HANG",
+      "form": "ESSAY",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-004",
+      "title": "Remote sensing and the 2018 Kerala floods",
+      "room": "study",
+      "state": "BUILD",
+      "form": "MODEL",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-005",
+      "title": "Scallops and seaweed: aquaculture in Maine",
+      "room": "study",
+      "state": "BUILD",
+      "form": "ESSAY",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-006",
+      "title": "Therapeutic Landscapes",
+      "room": "workshop",
+      "state": "HANG",
+      "form": "MODEL",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-007",
+      "title": "Ratanakiri FPIC",
+      "room": "porch",
+      "state": "HANG",
+      "form": "ADVOC",
+      "doors": [
+        "ENV"
+      ],
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-008",
+      "title": "12 Hours of Action for Black Lives",
+      "room": "porch",
+      "state": "HANG",
+      "form": "ADVOC",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-009",
+      "title": "Coming soon",
+      "room": "ruled-field",
+      "state": "GATED",
+      "form": "ESSAY",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    },
+    {
+      "id": "ART-010",
+      "title": "Colophon",
+      "room": "frontdoor",
+      "state": "HANG",
+      "form": "NOTE",
+      "doors": [
+        "METHOD"
+      ],
+      "date": {
+        "absn": "ABSN·03"
+      },
+      "href": "/home/colophon"
+    },
+    {
+      "id": "ART-011",
+      "title": "Research for Genocide: A Comprehensive Introduction",
+      "room": "study",
+      "state": "HANG",
+      "form": "ESSAY",
+      "doors": {
+        "absn": "ABSN·04"
+      },
+      "date": {
+        "absn": "ABSN·03"
+      }
+    }
+  ]
+}

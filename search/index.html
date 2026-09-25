@@ -1,0 +1,282 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/home/vendor/react.production.min.js"></script>
+    <script src="/home/vendor/react-dom.production.min.js"></script>
+    <script src="/home/support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>Search – Bhanu Cheepurupalli</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f2ead6;
+            color: #1f2e4d;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #456264;
+          }
+          a:hover {
+            color: #456264;
+          }
+          a[data-link] {
+            position: relative;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-link]:hover {
+            text-decoration-thickness: 2px;
+          }
+          /* Widens each link's tap target to at least 44 by 44 px without moving the layout. */
+          a[data-link]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          a[data-link]:focus,
+          input:focus {
+            outline: none;
+          }
+          a[data-link]:focus-visible,
+          input:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          min-height: 100vh;
+          background: #f2ead6;
+          color: #1f2e4d;
+          font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            min-height: 56px;
+            padding: 12px clamp(16px, 4vw, 32px);
+          "
+        >
+          <nav
+            aria-label="Site"
+            style="
+              flex: 1;
+              display: flex;
+              justify-content: space-between;
+              gap: 24px;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+            "
+          >
+            <a data-link="" href="/home/">The house</a>
+            <a data-link="" href="/home/index">Index</a>
+          </nav>
+        </header>
+
+        <main
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            max-width: 720px;
+            padding: 24px clamp(16px, 4vw, 32px) 56px;
+          "
+        >
+          <h1
+            style="
+              margin: 0;
+              font-family: &quot;EB Garamond&quot;, Georgia, serif;
+              font-weight: 400;
+              font-size: 40px;
+              line-height: 1.12;
+              letter-spacing: -0.01em;
+            "
+            >Search</h1
+          >
+
+          <div role="search" style="display: flex; flex-direction: column; gap: 8px">
+            <label
+              for="q"
+              style="font-size: 13px; line-height: 1.5; letter-spacing: 0.01em; color: #545d6f"
+              >Search titles, ids and rooms</label
+            >
+            <input
+              id="q"
+              type="search"
+              autocomplete="off"
+              spellcheck="false"
+              value="{{ q }}"
+              onChange="{{ onQuery }}"
+              style="
+                font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+                font-size: 16px;
+                letter-spacing: 0.01em;
+                color: #1f2e4d;
+                background: transparent;
+                border: 0;
+                border-bottom: 1px solid #545d6f;
+                border-radius: 0;
+                min-height: 44px;
+                padding: 0 4px;
+                width: min(100%, 24em);
+              "
+            />
+          </div>
+
+          <p
+            role="status"
+            aria-live="polite"
+            style="
+              margin: 0;
+              min-height: 1.5em;
+              font-size: 13px;
+              line-height: 1.5;
+              letter-spacing: 0.01em;
+              color: #545d6f;
+            "
+            >{{ status }}</p
+          >
+
+          <sc-if value="{{ hasResults }}" hint-placeholder-val="{{ false }}">
+            <ul
+              style="
+                list-style: none;
+                margin: 0;
+                padding: 12px 0 0;
+                border-top: 1px solid #1f2e4d;
+                display: flex;
+                flex-direction: column;
+                gap: 20px;
+              "
+            >
+              <sc-for list="{{ results }}" as="r" hint-placeholder-count="3">
+                <li style="display: flex; flex-direction: column; gap: 4px">
+                  <span
+                    style="
+                      font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                      font-style: italic;
+                      font-size: 18px;
+                      line-height: 1.4;
+                      text-wrap: pretty;
+                    "
+                  >
+                    <sc-if value="{{ r.isLink }}" hint-placeholder-val="{{ true }}"
+                      ><a data-link="" href="{{ r.href }}" style="display: inline-block"
+                        >{{ r.title }}</a
+                      ></sc-if
+                    >
+                    <sc-if value="{{ r.notLink }}" hint-placeholder-val="{{ false }}"
+                      ><span style="color: #545d6f">{{ r.title }}</span></sc-if
+                    >
+                  </span>
+                  <span
+                    style="
+                      display: flex;
+                      flex-wrap: wrap;
+                      gap: 4px 24px;
+                      font-size: 13px;
+                      line-height: 1.5;
+                    "
+                  >
+                    <span style="letter-spacing: 0.08em; font-variant-numeric: tabular-nums"
+                      >{{ r.id }}</span
+                    >
+                    <sc-if value="{{ r.hasRoom }}" hint-placeholder-val="{{ true }}"
+                      ><span style="letter-spacing: 0.01em; color: #545d6f"
+                        >{{ r.roomName }}</span
+                      ></sc-if
+                    >
+                  </span>
+                </li>
+              </sc-for>
+            </ul>
+          </sc-if>
+
+          <sc-if value="{{ noMatch }}" hint-placeholder-val="{{ false }}">
+            <p
+              style="
+                margin: 0;
+                font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                font-size: 18px;
+                line-height: 1.5;
+              "
+              >Nothing in the index matches that search.</p
+            >
+          </sc-if>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      // The template's hint-placeholder-* attributes only guide the design tool's live preview; the published site ignores them.
+      const NB = '\u00a0';
+      const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+
+      class Component extends DCLogic {
+        state = { items: null, rooms: {}, q: '', error: '' };
+
+        componentDidMount() {
+          Promise.all([
+            fetch('/home/plain-door.data.json').then(r => r.json()),
+            fetch('/home/house.rooms.json').then(r => r.json())
+          ]).then(([d, h]) => {
+            const rooms = {};
+            h.rooms.forEach(r => { rooms[r.id] = r; });
+            this.setState({ items: d.items, rooms });
+          }).catch(e => this.setState({ error: 'The index data did not load: ' + (e && e.message ? e.message : String(e)) }));
+        }
+
+        renderVals() {
+          const { items, rooms, q, error } = this.state;
+          const all = items || [];
+          const term = q.trim().toLowerCase();
+          const roomName = it => { const r = rooms[it.room]; return r && r.name ? r.name : ''; };
+          const hits = term ? all.filter(it => (it.id + ' ' + it.title + ' ' + roomName(it)).toLowerCase().includes(term)) : [];
+          const results = hits.map(it => {
+            const room = rooms[it.room];
+            const path = it.href || (room && room.path);
+            return {
+              id: it.id, title: it.title,
+              // Result links are inline-block in the template, so a title that wraps to two lines stays one tap target.
+              isLink: !!path, notLink: !path, href: path || null,
+              hasRoom: !!(room && room.name), roomName: room && room.name ? cap(room.name) : ''
+            };
+          });
+          const n = hits.length;
+          const status = error || (term && items ? n + NB + 'of' + NB + all.length + NB + 'holdings ' + (n === 1 ? 'matches' : 'match') : '');
+          return {
+            q,
+            onQuery: e => this.setState({ q: e.target.value }),
+            status,
+            results,
+            hasResults: n > 0,
+            noMatch: !!items && !!term && n === 0
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

@@ -1,0 +1,261 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/home/vendor/react.production.min.js"></script>
+    <script src="/home/vendor/react-dom.production.min.js"></script>
+    <script src="/home/support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>Map – Bhanu Cheepurupalli</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f2ead6;
+            color: #1f2e4d;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #456264;
+          }
+          a:hover {
+            color: #456264;
+          }
+          a[data-link] {
+            position: relative;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-link]:hover {
+            text-decoration-thickness: 2px;
+          }
+          /* Widens each link's tap target to at least 44 by 44 px without moving the layout. */
+          a[data-link]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          a[data-link]:focus,
+          button[data-pause]:focus {
+            outline: none;
+          }
+          a[data-link]:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+          button[data-pause]:focus-visible {
+            outline: 2px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+          button[data-pause][aria-pressed="true"] {
+            box-shadow: inset 0 0 0 1px #1f2e4d;
+          }
+          button[data-pause][aria-pressed="true"] [data-box] {
+            background: #1f2e4d;
+          }
+          iframe:focus {
+            outline: none;
+          }
+          iframe:focus-visible {
+            outline: 2px solid #1f2e4d;
+            outline-offset: -2px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          height: 100dvh;
+          display: grid;
+          grid-template-rows: auto minmax(0, 1fr);
+          background: #f2ead6;
+          color: #1f2e4d;
+          font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 16px;
+            min-height: 56px;
+            padding: 12px clamp(16px, 4vw, 32px);
+          "
+        >
+          <button
+            data-pause=""
+            type="button"
+            aria-pressed="{{ pressed }}"
+            onClick="{{ toggle }}"
+            style="
+              display: inline-flex;
+              align-items: center;
+              gap: 8px;
+              min-height: 32px;
+              padding: 0 12px;
+              margin: 0;
+              border: 1px solid #1f2e4d;
+              border-radius: 0;
+              background: transparent;
+              color: #1f2e4d;
+              font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+              font-weight: 500;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+              cursor: pointer;
+            "
+          >
+            <span
+              data-box=""
+              aria-hidden="true"
+              style="
+                display: block;
+                width: 10px;
+                height: 10px;
+                border: 1px solid #1f2e4d;
+                background: transparent;
+              "
+            ></span>
+            <span>Pause motion</span>
+          </button>
+          <nav
+            aria-label="Site"
+            style="
+              display: flex;
+              gap: 24px;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+            "
+          >
+            <a data-link="" href="/home/index">Index</a>
+          </nav>
+        </header>
+
+        <main style="min-height: 0">
+          <h1
+            style="
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              margin: -1px;
+              padding: 0;
+              border: 0;
+              overflow: hidden;
+              clip: rect(0 0 0 0);
+              clip-path: inset(50%);
+              white-space: nowrap;
+            "
+            >Map</h1
+          >
+          <iframe
+            ref="{{ setFrame }}"
+            src="/home/house-opening.html"
+            title="The house"
+            style="display: block; width: 100%; height: 100%; border: 0; background: #f2ead6"
+          ></iframe>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      const VIEW = 'map';
+      const MOTION_KEY = 'site.motion';
+
+      // The one source of the clock: night from 8 pm to 8 am by the reader's own clock.
+      // ?clock=night and ?clock=day override the hour, for tests.
+      function siteClock() {
+        try { const q = new URLSearchParams(location.search).get('clock'); if (q === 'night' || q === 'day') return q; } catch (e) {}
+        const h = new Date().getHours();
+        return (h >= 20 || h < 8) ? 'night' : 'day';
+      }
+      const CLOCK_EVERY = 60000;
+      function readPaused() { try { return localStorage.getItem(MOTION_KEY) === 'still'; } catch (e) { return false; } }
+      function writePaused(p) { try { localStorage.setItem(MOTION_KEY, p ? 'still' : 'play'); } catch (e) {} }
+
+      class Component extends DCLogic {
+        state = { paused: readPaused() };
+        frame = null;
+
+        // The frame's load listener is attached here, once per element, so the first message never depends on a template binding.
+        // If the frame has already loaded when the ref arrives, the first message goes at once. onLoad sends once per document.
+        setFrame = el => {
+          if (el === this.frame) return;
+          if (this.frame) this.frame.removeEventListener('load', this.onLoad);
+          this.frame = el;
+          if (!el) return;
+          el.addEventListener('load', this.onLoad);
+          let doc = null;
+          try { doc = el.contentDocument; } catch (e) {}
+          if (doc && doc.readyState === 'complete' && doc.URL && doc.URL !== 'about:blank') this.onLoad();
+        };
+
+        watchClock = () => {
+          if (!this.lastClock) return;
+          const c = siteClock();
+          if (c === this.lastClock) return;
+          this.lastClock = c;
+          this.send({ type: 'house:state', clock: c });
+        };
+
+        send(msg) { const f = this.frame; if (f && f.contentWindow) f.contentWindow.postMessage(msg, '*'); }
+
+        onLoad = () => {
+          let doc = null;
+          try { doc = this.frame && this.frame.contentDocument; } catch (e) {}
+          if (doc && doc === this.sentDoc) return;
+          this.sentDoc = doc;
+          this.lastClock = siteClock();
+          const m = { type: 'house:state', current: null, clock: this.lastClock, view: VIEW };
+          if (this.state.paused) m.motion = 'still';
+          this.send(m);
+        };
+
+        toggle = () => {
+          const p = !this.state.paused;
+          this.setState({ paused: p });
+          writePaused(p);
+          this.send({ type: 'house:state', motion: p ? 'still' : 'play' });
+        };
+
+        componentDidMount() {
+          this.onMsg = e => {
+            if (!this.frame || e.source !== this.frame.contentWindow) return;
+            const d = e.data;
+            if (!d || d.type !== 'house:enter') return;
+            if (typeof d.path === 'string' && d.path.charAt(0) === '/') location.assign(d.path);
+          };
+          window.addEventListener('message', this.onMsg);
+          this.clockTimer = setInterval(this.watchClock, CLOCK_EVERY);
+        }
+
+        componentWillUnmount() {
+          window.removeEventListener('message', this.onMsg);
+          clearInterval(this.clockTimer);
+        }
+
+        renderVals() {
+          return { pressed: this.state.paused ? 'true' : 'false', toggle: this.toggle, setFrame: this.setFrame };
+        }
+      }
+    </script>
+  </body>
+</html>

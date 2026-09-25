@@ -1,0 +1,269 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/home/vendor/react.production.min.js"></script>
+    <script src="/home/vendor/react-dom.production.min.js"></script>
+    <script src="/home/support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>CV – Bhanu Cheepurupalli</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f2ead6;
+            color: #1f2e4d;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #456264;
+          }
+          a:hover {
+            color: #456264;
+          }
+          a[data-link] {
+            position: relative;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-link]:hover {
+            text-decoration-thickness: 2px;
+          }
+          /* Widens each link's tap target to at least 44 by 44 px without moving the layout. */
+          a[data-link]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          a[data-link]:focus,
+          a[data-btn]:focus {
+            outline: none;
+          }
+          a[data-link]:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+          a[data-btn] {
+            text-decoration: none;
+          }
+          a[data-btn]:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-btn]:focus-visible {
+            outline: 2px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          min-height: 100vh;
+          background: #f2ead6;
+          color: #1f2e4d;
+          font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            min-height: 56px;
+            padding: 12px clamp(16px, 4vw, 32px);
+          "
+        >
+          <nav
+            aria-label="Site"
+            style="
+              flex: 1;
+              display: flex;
+              justify-content: space-between;
+              gap: 24px;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+            "
+          >
+            <a data-link="" href="/home/">The house</a>
+            <a data-link="" href="/home/index">Index</a>
+          </nav>
+        </header>
+
+        <main
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 720px;
+            padding: 24px clamp(16px, 4vw, 32px) 56px;
+          "
+        >
+          <div style="display: flex; flex-direction: column; gap: 16px">
+            <h1
+              style="
+                margin: 0;
+                font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 1.12;
+                letter-spacing: -0.01em;
+              "
+              >Bhanu Cheepurupalli</h1
+            >
+            <p
+              style="
+                margin: 0;
+                max-width: 62ch;
+                font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                font-size: 18px;
+                line-height: 1.7;
+                text-wrap: pretty;
+              "
+              >Bhanu Cheepurupalli works on AI governance and oversight policy. Earlier work
+              includes evaluation with UNICEF's Evaluation Office and rights documentation with
+              Oxfam in Cambodia. Studied at Claremont McKenna College and St Anne's College,
+              Oxford.</p
+            >
+            <p
+              style="
+                margin: 0;
+                max-width: 62ch;
+                font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                font-size: 18px;
+                line-height: 1.7;
+              "
+              >Currently building civic-transparency tools and learning more about federal
+              oversight.
+              <time
+                datetime="2026-09"
+                style="
+                  margin-left: 8px;
+                  font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+                  font-size: 13px;
+                  letter-spacing: 0.01em;
+                  color: #545d6f;
+                  white-space: nowrap;
+                "
+                >September 2026</time
+              ></p
+            >
+          </div>
+
+          <a
+            data-btn=""
+            href="https://docs.google.com/document/d/10HqTeg6GyhU5n7BPQyOXLbVnoHdwht17/edit?usp=sharing&amp;ouid=118344585482735343339&amp;rtpof=true&amp;sd=true"
+            style="
+              align-self: flex-start;
+              display: inline-flex;
+              align-items: center;
+              min-height: 44px;
+              padding: 0 16px;
+              border: 1px solid #1f2e4d;
+              border-radius: 0;
+              background: transparent;
+              color: #1f2e4d;
+              font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+              font-weight: 500;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+            "
+            >Request my CV</a
+          >
+
+          <section
+            aria-labelledby="contact-h"
+            style="display: flex; flex-direction: column; gap: 12px"
+          >
+            <h2
+              id="contact-h"
+              style="
+                margin: 0;
+                font-size: 13px;
+                font-weight: 400;
+                line-height: 1.5;
+                letter-spacing: 0.01em;
+                color: #545d6f;
+              "
+              >Contact</h2
+            >
+            <dl
+              style="
+                margin: 0;
+                padding-top: 12px;
+                border-top: 1px solid #1f2e4d;
+                display: grid;
+                grid-template-columns: max-content minmax(0, 1fr);
+                column-gap: 24px;
+                row-gap: 24px;
+                align-items: baseline;
+              "
+            >
+              <dt style="font-size: 13px; line-height: 1.5; letter-spacing: 0.01em; color: #545d6f"
+                >Email</dt
+              >
+              <dd
+                style="
+                  margin: 0;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-size: 18px;
+                  line-height: 1.5;
+                  overflow-wrap: anywhere;
+                "
+                ><a data-link="" href="mailto:bhanucheepurupalli@gmail.com"
+                  >bhanucheepurupalli@gmail.com</a
+                ></dd
+              >
+              <dt style="font-size: 13px; line-height: 1.5; letter-spacing: 0.01em; color: #545d6f"
+                >Signal</dt
+              >
+              <dd
+                style="
+                  margin: 0;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-size: 18px;
+                  line-height: 1.5;
+                "
+                >bhanu.94</dd
+              >
+              <dt style="font-size: 13px; line-height: 1.5; letter-spacing: 0.01em; color: #545d6f"
+                >LinkedIn</dt
+              >
+              <dd
+                style="
+                  margin: 0;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-size: 18px;
+                  line-height: 1.5;
+                  overflow-wrap: anywhere;
+                "
+                ><a data-link="" href="https://www.linkedin.com/in/bhanu-cheepurupalli/"
+                  >linkedin.com/in/bhanu-cheepurupalli</a
+                ></dd
+              >
+            </dl>
+          </section>
+        </main>
+      </div>
+    </x-dc>
+  </body>
+</html>

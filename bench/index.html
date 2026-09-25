@@ -1,0 +1,329 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/home/vendor/react.production.min.js"></script>
+    <script src="/home/vendor/react-dom.production.min.js"></script>
+    <script src="/home/support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>Bench – Bhanu Cheepurupalli</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f2ead6;
+            color: #1f2e4d;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #456264;
+          }
+          a:hover {
+            color: #456264;
+          }
+          a[data-link] {
+            position: relative;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-link]:hover {
+            text-decoration-thickness: 2px;
+          }
+          /* Widens each link's tap target to at least 44 by 44 px without moving the layout. */
+          a[data-link]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          a[data-link]:focus {
+            outline: none;
+          }
+          a[data-link]:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          min-height: 100vh;
+          background: #f2ead6;
+          color: #1f2e4d;
+          font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            min-height: 56px;
+            padding: 12px clamp(16px, 4vw, 32px);
+          "
+        >
+          <nav
+            aria-label="Site"
+            style="
+              flex: 1;
+              display: flex;
+              justify-content: space-between;
+              gap: 24px;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+            "
+          >
+            <a data-link="" href="/home/">The house</a>
+            <a data-link="" href="/home/index">Index</a>
+          </nav>
+        </header>
+
+        <main
+          style="
+            display: flex;
+            flex-direction: column;
+            gap: 32px;
+            max-width: 720px;
+            padding: 24px clamp(16px, 4vw, 32px) 56px;
+          "
+        >
+          <sc-if value="{{ found }}" hint-placeholder-val="{{ true }}">
+            <div style="display: flex; flex-direction: column; gap: 16px">
+              <h1
+                style="
+                  margin: 0;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-weight: 400;
+                  font-size: 40px;
+                  line-height: 1.12;
+                  letter-spacing: -0.01em;
+                "
+                >{{ heading }}</h1
+              >
+              <p
+                style="
+                  margin: 0;
+                  max-width: 62ch;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-size: 18px;
+                  line-height: 1.7;
+                  text-wrap: pretty;
+                "
+                >{{ meta }}</p
+              >
+            </div>
+
+            <sc-if value="{{ hasHoldings }}" hint-placeholder-val="{{ true }}">
+              <section
+                aria-labelledby="holdings-h"
+                style="display: flex; flex-direction: column; gap: 12px"
+              >
+                <h2
+                  id="holdings-h"
+                  style="
+                    margin: 0;
+                    font-size: 13px;
+                    font-weight: 400;
+                    line-height: 1.5;
+                    letter-spacing: 0.01em;
+                    color: #545d6f;
+                  "
+                  >Holdings</h2
+                >
+                <ul
+                  style="
+                    list-style: none;
+                    margin: 0;
+                    padding: 12px 0 0;
+                    border-top: 1px solid #1f2e4d;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 20px;
+                  "
+                >
+                  <sc-for list="{{ holdings }}" as="h" hint-placeholder-count="3">
+                    <li style="display: flex; flex-direction: column; gap: 4px">
+                      <span
+                        style="
+                          font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                          font-style: italic;
+                          font-size: 18px;
+                          line-height: 1.4;
+                          text-wrap: pretty;
+                        "
+                        ><sc-if value="{{ h.isLink }}" hint-placeholder-val="{{ false }}"
+                          ><a data-link="" href="{{ h.href }}" style="display: inline-block"
+                            >{{ h.title }}</a
+                          ></sc-if
+                        ><sc-if value="{{ h.notLink }}" hint-placeholder-val="{{ true }}"
+                          ><span>{{ h.title }}</span></sc-if
+                        ></span
+                      >
+                      <span
+                        style="
+                          display: flex;
+                          flex-wrap: wrap;
+                          gap: 4px 24px;
+                          font-size: 13px;
+                          line-height: 1.5;
+                        "
+                      >
+                        <span style="display: flex; gap: 8px"
+                          ><span style="color: #545d6f; letter-spacing: 0.01em">State</span
+                          ><sc-if value="{{ h.isGated }}" hint-placeholder-val="{{ false }}"
+                            ><span style="letter-spacing: 0.08em; font-weight: 600"
+                              >{{ h.state }}</span
+                            ></sc-if
+                          ><sc-if value="{{ h.notGated }}" hint-placeholder-val="{{ true }}"
+                            ><span style="letter-spacing: 0.08em; font-weight: 400"
+                              >{{ h.state }}</span
+                            ></sc-if
+                          ></span
+                        >
+                        <span style="display: flex; gap: 8px"
+                          ><span style="color: #545d6f; letter-spacing: 0.01em">Type</span
+                          ><sc-if value="{{ h.formAbsent }}" hint-placeholder-val="{{ false }}"
+                            ><span data-absn="{{ h.formAbsn }}" style="letter-spacing: 0.01em"
+                              >{{ h.formWord }}</span
+                            ></sc-if
+                          ><sc-if value="{{ h.formPresent }}" hint-placeholder-val="{{ true }}"
+                            ><span style="letter-spacing: 0.08em">{{ h.form }}</span></sc-if
+                          ></span
+                        >
+                      </span>
+                    </li>
+                  </sc-for>
+                </ul>
+              </section>
+            </sc-if>
+
+            <sc-if value="{{ noHoldings }}" hint-placeholder-val="{{ false }}">
+              <p
+                style="
+                  margin: 0;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-size: 18px;
+                  line-height: 1.5;
+                "
+                >This room is being furnished.</p
+              >
+            </sc-if>
+          </sc-if>
+
+          <sc-if value="{{ notFound }}" hint-placeholder-val="{{ false }}">
+            <h1
+              style="
+                margin: 0;
+                font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                font-weight: 400;
+                font-size: 40px;
+                line-height: 1.12;
+                letter-spacing: -0.01em;
+              "
+              >Nothing here yet</h1
+            >
+          </sc-if>
+
+          <sc-if value="{{ hasError }}" hint-placeholder-val="{{ false }}">
+            <p
+              role="alert"
+              style="margin: 0; font-size: 13px; line-height: 1.5; letter-spacing: 0.01em"
+              >{{ error }}</p
+            >
+          </sc-if>
+
+          <nav
+            aria-label="Way back"
+            style="
+              display: flex;
+              font-family: &quot;EB Garamond&quot;, Georgia, serif;
+              font-size: 18px;
+              line-height: 1.5;
+            "
+          >
+            <a data-link="" href="/home/">Back to the house</a>
+          </nav>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      // The template's hint-placeholder-* attributes only guide the design tool's live preview; the published site ignores them.
+      const ROOMS = ['porch', 'entrance', 'den', 'workshop', 'writing', 'study', 'archives', 'bench', 'garden', 'reading', 'listening', 'grounds'];
+      const WORDS = { 'ABSN·03': 'To be confirmed', 'ABSN·04': 'unsurveyed', 'ABSN·06': 'does not apply' };
+      const absn = v => (v && typeof v === 'object' && !Array.isArray(v) && v.absn) ? v.absn : null;
+      const cap = s => s ? s.charAt(0).toUpperCase() + s.slice(1) : '';
+      // Design previews read the room from ?room=. The export writes each room's id in instead.
+      function roomParam() { return 'bench'; }
+
+      class Component extends DCLogic {
+        state = { rooms: null, items: null, id: roomParam(), error: '' };
+
+        componentDidMount() {
+          Promise.all([
+            fetch('/home/plain-door.data.json').then(r => r.json()),
+            fetch('/home/house.rooms.json').then(r => r.json())
+          ]).then(([d, h]) => {
+            const rooms = {};
+            h.rooms.forEach(r => { rooms[r.id] = r; });
+            this.setState({ items: d.items, rooms });
+          }).catch(e => this.setState({ error: 'The room data did not load: ' + (e && e.message ? e.message : String(e)) }));
+          this.onPop = () => this.setState({ id: roomParam() });
+          window.addEventListener('popstate', this.onPop);
+        }
+
+        componentWillUnmount() { window.removeEventListener('popstate', this.onPop); }
+
+        room() {
+          const { rooms, id } = this.state;
+          return rooms && ROOMS.includes(id) ? rooms[id] : null;
+        }
+
+        componentDidUpdate() {
+          const r = this.room();
+          const t = (r ? cap(r.name) : (this.state.rooms ? 'Nothing here yet' : 'Room')) + ' – Bhanu Cheepurupalli';
+          if (document.title !== t) document.title = t;
+        }
+
+        renderVals() {
+          const { rooms, items, id, error } = this.state;
+          const r = this.room();
+          const holdings = r ? (items || []).filter(it => it.room === id).map(it => {
+            const fA = absn(it.form);
+            return {
+              // A holding links from its room page only by its own href: its room's path is this page.
+              title: it.title, state: it.state, isLink: !!it.href, notLink: !it.href, href: it.href || null, isGated: it.state === 'GATED', notGated: it.state !== 'GATED',
+              formAbsent: !!fA, formPresent: !fA, formAbsn: fA, formWord: WORDS[fA], form: fA ? '' : it.form
+            };
+          }) : [];
+          return {
+            found: !!r,
+            notFound: !!rooms && !r,
+            heading: r ? cap(r.name) : '',
+            meta: r ? r.meta : '',
+            holdings,
+            hasHoldings: holdings.length > 0,
+            noHoldings: !!r && holdings.length === 0,
+            hasError: !!error, error
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

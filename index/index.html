@@ -1,0 +1,856 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/home/vendor/react.production.min.js"></script>
+    <script src="/home/vendor/react-dom.production.min.js"></script>
+    <script src="/home/support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>Index – Bhanu Cheepurupalli</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=Archivo:wght@400;500;600&amp;family=EB+Garamond:ital,wght@0,400;1,400&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f2ead6;
+            color: #1f2e4d;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: inherit;
+          }
+          a:hover {
+            color: inherit;
+          }
+          a[data-link] {
+            position: relative;
+            color: #456264;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-link]:hover {
+            color: #456264;
+            text-decoration-thickness: 2px;
+          }
+          /* Widens each link's tap target to at least 44 by 44 px without moving the layout. */
+          a[data-link]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          a[data-link]:focus {
+            outline: none;
+          }
+          a[data-link]:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+          [data-title] {
+            text-decoration: none;
+            outline: none;
+          }
+          a[data-title] {
+            position: relative;
+          }
+          a[data-title]::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+          }
+          a[data-title]:hover,
+          a[data-title]:focus-visible {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          [data-title]:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+          button[data-f],
+          button[data-toggle] {
+            position: relative;
+          }
+          button[data-f]::after,
+          button[data-toggle]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          button[data-f] {
+            text-decoration: none;
+          }
+          button[data-f]:hover {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+          }
+          button[data-f][aria-pressed="true"] {
+            text-decoration: underline;
+            text-decoration-thickness: 2px;
+            text-underline-offset: 4px;
+          }
+          button[data-toggle] {
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 4px;
+          }
+          button[data-toggle]:hover {
+            text-decoration-thickness: 2px;
+          }
+          button:focus {
+            outline: none;
+          }
+          button:focus-visible,
+          input:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+          [data-table] {
+            display: grid;
+            grid-template-columns:
+              max-content minmax(260px, 1fr)
+              max-content max-content max-content max-content;
+            column-gap: 24px;
+          }
+          [data-grid]:not([data-head]):not([data-sizer])
+            :is(
+              [data-c="id"],
+              [data-c="type"],
+              [data-c="doors"],
+              [data-c="state"],
+              [data-c="date"]
+            ) {
+            contain: inline-size;
+          }
+          [data-sizer] {
+            height: 0;
+            overflow: hidden;
+            visibility: hidden;
+          }
+          [data-sizer] [data-c] > span {
+            display: block;
+            white-space: nowrap;
+          }
+          [data-grid] {
+            display: grid;
+            grid-template-columns: subgrid;
+            grid-column: 1/-1;
+            align-items: baseline;
+          }
+          [data-c="id"] {
+            grid-column: 1;
+          }
+          [data-c="title"] {
+            grid-column: 2;
+          }
+          [data-c="type"] {
+            grid-column: 3;
+          }
+          [data-c="doors"] {
+            grid-column: 4;
+          }
+          [data-c="state"] {
+            grid-column: 5;
+          }
+          [data-c="date"] {
+            grid-column: 6;
+          }
+          [data-lbl] {
+            display: none;
+          }
+          @container idx (max-width: 845px) {
+            [data-table] {
+              grid-template-columns: max-content max-content minmax(0, 1fr);
+            }
+            [data-grid] {
+              grid-template-columns: subgrid;
+              grid-template-areas: "id state ." "title title title" "type date date" "doors doors doors";
+              row-gap: 6px;
+            }
+            [data-c="id"] {
+              grid-area: id;
+            }
+            [data-c="title"] {
+              grid-area: title;
+            }
+            [data-c="type"] {
+              grid-area: type;
+            }
+            [data-c="doors"] {
+              grid-area: doors;
+            }
+            [data-c="state"] {
+              grid-area: state;
+            }
+            [data-c="date"] {
+              grid-area: date;
+            }
+            [data-grid][data-head] {
+              position: absolute;
+              width: 1px;
+              height: 1px;
+              overflow: hidden;
+              clip-path: inset(50%);
+              white-space: nowrap;
+            }
+            [data-lbl] {
+              display: inline;
+            }
+          }
+        </style>
+      </helmet>
+      <div
+        style="
+          min-height: 100vh;
+          background: #f2ead6;
+          color: #1f2e4d;
+          font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+        "
+      >
+        <header
+          style="
+            display: flex;
+            align-items: center;
+            min-height: 56px;
+            padding: 12px clamp(16px, 4vw, 32px);
+          "
+        >
+          <nav
+            aria-label="Site"
+            style="
+              flex: 1;
+              display: flex;
+              justify-content: space-between;
+              gap: 24px;
+              font-size: 13px;
+              line-height: 20px;
+              letter-spacing: 0.01em;
+            "
+          >
+            <a data-link="" href="/home/">The house</a>
+            <a data-link="" href="/home/index" aria-current="page">Index</a>
+          </nav>
+        </header>
+
+        <main
+          style="padding: clamp(16px, 4vw, 56px); display: flex; flex-direction: column; gap: 32px"
+        >
+          <div
+            role="region"
+            aria-label="Index"
+            ref="{{ regionRef }}"
+            onKeyDown="{{ onKey }}"
+            style="
+              display: flex;
+              flex-direction: column;
+              gap: 24px;
+              max-width: 1120px;
+              min-width: 0;
+            "
+          >
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <div style="display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 24px">
+                <h1
+                  style="
+                    margin: 0;
+                    font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                    font-weight: 400;
+                    font-size: 40px;
+                    line-height: 1.12;
+                    letter-spacing: -0.01em;
+                  "
+                  >Index</h1
+                >
+              </div>
+            </div>
+
+            <!-- furniture -->
+            <div
+              data-ship-card=""
+              style="
+                display: grid;
+                grid-template-columns: max-content minmax(0, 1fr);
+                column-gap: 16px;
+                row-gap: 12px;
+                width: max-content;
+                max-width: 100%;
+                border-top: 1px solid #1f2e4d;
+                padding-top: 12px;
+                font-size: 11px;
+                line-height: 1.4;
+                letter-spacing: 0.02em;
+                font-variant-numeric: tabular-nums;
+              "
+            >
+              <span style="color: #545d6f">Version</span><span>{{ version }}</span>
+              <span style="color: #545d6f">Artifacts</span><span>{{ total }}</span>
+              <span style="color: #545d6f">Showing</span><span>{{ showing }}</span>
+              <span style="color: #545d6f">To be confirmed</span><span>{{ unmeasCount }}</span>
+              <span style="color: #545d6f">Unsurveyed</span><span>{{ unsurvCount }}</span>
+              <span style="color: #545d6f">Scope</span
+              ><span style="text-wrap: pretty">{{ scopeGaps }}</span>
+            </div>
+            <!-- /furniture -->
+
+            <div style="display: flex; flex-direction: column">
+              <sc-for list="{{ groups }}" as="g" hint-placeholder-count="3">
+                <div
+                  role="group"
+                  aria-label="{{ g.label }}"
+                  style="
+                    display: grid;
+                    grid-template-columns: 4.5em minmax(0, 1fr);
+                    column-gap: 8px;
+                    align-items: baseline;
+                    padding: 12px 0;
+                  "
+                >
+                  <span
+                    style="
+                      font-size: 13px;
+                      line-height: 1.5;
+                      letter-spacing: 0.01em;
+                      color: #545d6f;
+                    "
+                    >{{ g.label }}</span
+                  >
+                  <div style="display: flex; flex-wrap: wrap; column-gap: 12px; row-gap: 24px">
+                    <sc-for list="{{ g.buttons }}" as="b" hint-placeholder-count="5">
+                      <button
+                        data-f=""
+                        type="button"
+                        aria-pressed="{{ b.pressed }}"
+                        onClick="{{ b.onClick }}"
+                        style="
+                          background: none;
+                          border: 0;
+                          padding: 0 4px;
+                          margin: 0;
+                          font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+                          font-size: 13px;
+                          line-height: 1.5;
+                          letter-spacing: 0.08em;
+                          color: #1f2e4d;
+                          cursor: pointer;
+                        "
+                        >{{ b.label }}</button
+                      >
+                    </sc-for>
+                  </div>
+                </div>
+              </sc-for>
+              <label
+                style="
+                  display: grid;
+                  grid-template-columns: 4.5em minmax(0, 1fr);
+                  column-gap: 8px;
+                  align-items: center;
+                "
+              >
+                <span style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f">Filter</span>
+                <input
+                  ref="{{ filterRef }}"
+                  type="text"
+                  value="{{ q }}"
+                  onChange="{{ onQuery }}"
+                  placeholder="title or id"
+                  style="
+                    font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+                    font-size: 13px;
+                    letter-spacing: 0.01em;
+                    color: #1f2e4d;
+                    background: transparent;
+                    border: 0;
+                    border-bottom: 1px solid #545d6f;
+                    border-radius: 0;
+                    min-height: 44px;
+                    padding: 0 4px;
+                    width: min(100%, 20em);
+                  "
+                />
+              </label>
+            </div>
+
+            <div style="container-type: inline-size; container-name: idx; padding: 3px">
+              <div
+                role="table"
+                data-table=""
+                aria-label="Every holding"
+                aria-rowcount="{{ rowCount }}"
+                style="position: relative"
+              >
+                <div
+                  role="row"
+                  data-grid=""
+                  data-head=""
+                  style="padding: 0 0 8px; font-size: 13px; line-height: 1.5"
+                >
+                  <span
+                    role="columnheader"
+                    data-c="id"
+                    aria-sort="{{ sortId }}"
+                    style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f"
+                    >ID</span
+                  >
+                  <span
+                    role="columnheader"
+                    data-c="title"
+                    style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f"
+                    >Title</span
+                  >
+                  <span
+                    role="columnheader"
+                    data-c="type"
+                    aria-sort="{{ sortType }}"
+                    style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f"
+                    >Type</span
+                  >
+                  <span
+                    role="columnheader"
+                    data-c="doors"
+                    style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f"
+                    >Doors</span
+                  >
+                  <span
+                    role="columnheader"
+                    data-c="state"
+                    style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f"
+                    >State</span
+                  >
+                  <span
+                    role="columnheader"
+                    data-c="date"
+                    style="font-size: 13px; letter-spacing: 0.01em; color: #545d6f"
+                    >Last changed</span
+                  >
+                </div>
+                <div
+                  data-grid=""
+                  data-sizer=""
+                  aria-hidden="true"
+                  style="font-size: 13px; line-height: 1.5"
+                >
+                  <span data-c="id" style="font-variant-numeric: tabular-nums"
+                    ><span style="letter-spacing: 0.08em">ART-000</span></span
+                  >
+                  <span data-c="title"><span>&#8203;</span></span>
+                  <span data-c="type"
+                    ><sc-for list="{{ szForm }}" as="v" hint-placeholder-count="1"
+                      ><span style="letter-spacing: 0.08em"
+                        ><span data-lbl="" style="letter-spacing: 0.01em; margin-right: 8px"
+                          >Type</span
+                        >{{ v }}</span
+                      ></sc-for
+                    ><sc-for list="{{ szWords }}" as="v" hint-placeholder-count="1"
+                      ><span style="letter-spacing: 0.01em"
+                        ><span data-lbl="" style="margin-right: 8px">Type</span>{{ v }}</span
+                      ></sc-for
+                    ></span
+                  >
+                  <span data-c="doors"
+                    ><sc-for list="{{ szDoors }}" as="v" hint-placeholder-count="1"
+                      ><span style="letter-spacing: 0.08em; word-spacing: 0.4em"
+                        >{{ v }}</span
+                      ></sc-for
+                    ><sc-for list="{{ szWords }}" as="v" hint-placeholder-count="1"
+                      ><span style="letter-spacing: 0.01em">{{ v }}</span></sc-for
+                    ></span
+                  >
+                  <span data-c="state"
+                    ><sc-for list="{{ szStates }}" as="v" hint-placeholder-count="1"
+                      ><span style="letter-spacing: 0.08em; font-weight: 600">{{ v }}</span></sc-for
+                    ></span
+                  >
+                  <span data-c="date" style="font-variant-numeric: tabular-nums"
+                    ><span style="letter-spacing: 0.01em">0000-00-00</span
+                    ><sc-for list="{{ szWords }}" as="v" hint-placeholder-count="1"
+                      ><span style="letter-spacing: 0.01em">{{ v }}</span></sc-for
+                    ></span
+                  >
+                </div>
+                <sc-for list="{{ rows }}" as="row" hint-placeholder-count="8">
+                  <div
+                    role="row"
+                    data-grid=""
+                    style="padding: 10px 0; font-size: 13px; line-height: 1.5"
+                  >
+                    <span
+                      role="cell"
+                      data-c="id"
+                      style="
+                        letter-spacing: 0.08em;
+                        font-variant-numeric: tabular-nums;
+                        white-space: nowrap;
+                      "
+                      >{{ row.id }}</span
+                    >
+                    <span
+                      role="cell"
+                      data-c="title"
+                      style="
+                        font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                        font-style: italic;
+                        font-size: 18px;
+                        line-height: 1.4;
+                      "
+                    >
+                      <sc-if value="{{ row.isLink }}" hint-placeholder-val="{{ true }}"
+                        ><a
+                          data-title=""
+                          href="{{ row.href }}"
+                          tabindex="{{ row.tab }}"
+                          ref="{{ row.ref }}"
+                          onFocus="{{ row.onFocus }}"
+                          style="color: #1f2e4d"
+                          >{{ row.title }}</a
+                        ></sc-if
+                      >
+                      <sc-if value="{{ row.notLink }}" hint-placeholder-val="{{ false }}"
+                        ><span
+                          data-title=""
+                          role="link"
+                          aria-disabled="true"
+                          tabIndex="{{ row.tab }}"
+                          ref="{{ row.ref }}"
+                          onFocus="{{ row.onFocus }}"
+                          style="color: #545d6f; cursor: default"
+                          >{{ row.title }}</span
+                        ></sc-if
+                      >
+                    </span>
+                    <span role="cell" data-c="type"
+                      ><span
+                        data-lbl=""
+                        aria-hidden="true"
+                        style="color: #545d6f; letter-spacing: 0.01em; margin-right: 8px"
+                        >Type</span
+                      ><sc-if value="{{ row.formAbsent }}" hint-placeholder-val="{{ false }}"
+                        ><span data-absn="{{ row.formAbsn }}" style="letter-spacing: 0.01em"
+                          >{{ row.formWord }}</span
+                        ></sc-if
+                      ><sc-if value="{{ row.formPresent }}" hint-placeholder-val="{{ true }}"
+                        ><span style="letter-spacing: 0.08em">{{ row.form }}</span></sc-if
+                      ></span
+                    >
+                    <span role="cell" data-c="doors"
+                      ><span
+                        data-lbl=""
+                        aria-hidden="true"
+                        style="color: #545d6f; letter-spacing: 0.01em; margin-right: 8px"
+                        >Doors</span
+                      ><sc-if value="{{ row.doorsAbsent }}" hint-placeholder-val="{{ false }}"
+                        ><span data-absn="{{ row.doorsAbsn }}" style="letter-spacing: 0.01em"
+                          >{{ row.doorsWord }}</span
+                        ></sc-if
+                      ><sc-if value="{{ row.doorsPresent }}" hint-placeholder-val="{{ true }}"
+                        ><span style="letter-spacing: 0.08em; word-spacing: 0.4em"
+                          >{{ row.doorsText }}</span
+                        ></sc-if
+                      ></span
+                    >
+                    <span role="cell" data-c="state" style="letter-spacing: 0.08em"
+                      ><sc-if value="{{ row.isGated }}" hint-placeholder-val="{{ false }}"
+                        ><span style="font-weight: 600">{{ row.state }}</span></sc-if
+                      ><sc-if value="{{ row.notGated }}" hint-placeholder-val="{{ true }}"
+                        ><span>{{ row.state }}</span></sc-if
+                      ></span
+                    >
+                    <span
+                      role="cell"
+                      data-c="date"
+                      style="letter-spacing: 0.01em; font-variant-numeric: tabular-nums"
+                      ><span
+                        data-lbl=""
+                        aria-hidden="true"
+                        style="color: #545d6f; margin-right: 8px"
+                        >Last changed</span
+                      ><sc-if value="{{ row.dateAbsent }}" hint-placeholder-val="{{ false }}"
+                        ><span data-absn="{{ row.dateAbsn }}">{{ row.dateWord }}</span></sc-if
+                      ><sc-if value="{{ row.datePresent }}" hint-placeholder-val="{{ true }}"
+                        ><span>{{ row.date }}</span></sc-if
+                      ></span
+                    >
+                  </div>
+                </sc-for>
+              </div>
+            </div>
+
+            <sc-if value="{{ isEmpty }}" hint-placeholder-val="{{ false }}">
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  align-items: baseline;
+                  gap: 8px 16px;
+                  font-family: &quot;EB Garamond&quot;, Georgia, serif;
+                  font-size: 18px;
+                  line-height: 1.5;
+                "
+              >
+                <span>Nothing matches these filters.</span>
+                <button
+                  data-toggle=""
+                  type="button"
+                  ref="{{ clearRef }}"
+                  onClick="{{ clearAll }}"
+                  style="
+                    background: none;
+                    border: 0;
+                    padding: 0 4px;
+                    margin: 0;
+                    font-family: &quot;Archivo&quot;, system-ui, sans-serif;
+                    font-size: 13px;
+                    line-height: 1.5;
+                    letter-spacing: 0.01em;
+                    color: #1f2e4d;
+                    cursor: pointer;
+                  "
+                  >Clear the filters</button
+                >
+              </div>
+            </sc-if>
+
+            <p
+              role="status"
+              aria-live="polite"
+              style="
+                margin: 0;
+                min-height: 1.5em;
+                font-size: 13px;
+                line-height: 1.5;
+                letter-spacing: 0.01em;
+                color: #545d6f;
+              "
+              >{{ status }}</p
+            >
+
+            <div style="display: flex; flex-direction: column; gap: 8px">
+              <div
+                style="
+                  display: flex;
+                  flex-wrap: wrap;
+                  gap: 8px 24px;
+                  font-size: 13px;
+                  line-height: 1.5;
+                  letter-spacing: 0.01em;
+                "
+              >
+                <span style="display: flex; gap: 6px"
+                  ><kbd style="font-family: inherit; font-weight: 500">Up</kbd
+                  ><kbd style="font-family: inherit; font-weight: 500">Down</kbd
+                  ><span style="color: #545d6f">move</span></span
+                >
+                <span style="display: flex; gap: 6px"
+                  ><kbd style="font-family: inherit; font-weight: 500">Enter</kbd
+                  ><span style="color: #545d6f">open</span></span
+                >
+                <span style="display: flex; gap: 6px"
+                  ><kbd style="font-family: inherit; font-weight: 500">/</kbd
+                  ><span style="color: #545d6f">filter</span></span
+                >
+                <span style="display: flex; gap: 6px"
+                  ><kbd style="font-family: inherit; font-weight: 500">T</kbd
+                  ><span style="color: #545d6f">sort by type</span></span
+                >
+                <span style="display: flex; gap: 6px"
+                  ><kbd style="font-family: inherit; font-weight: 500">C</kbd
+                  ><span style="color: #545d6f">To be confirmed only</span></span
+                >
+              </div>
+              <p
+                style="
+                  margin: 0;
+                  font-size: 13px;
+                  line-height: 1.5;
+                  letter-spacing: 0.01em;
+                  color: #545d6f;
+                "
+                >Keys work while focus is inside the index.</p
+              >
+            </div>
+          </div>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      // The template's hint-placeholder-* attributes only guide the design tool's live preview; the published site ignores them.
+      const DOORS = ['LAWS', 'SURV', 'DEV', 'DEMO', 'INFO', 'ENV', 'METHOD'];
+      const STATES = ['HANG', 'BENCH', 'BUILD', 'GATED'];
+      const FORM_ORDER = ['MODEL', 'ESSAY', 'ADVOC', 'DATA', 'NOTE'];
+      const WORDS = { 'ABSN·03': 'To be confirmed', 'ABSN·04': 'unsurveyed', 'ABSN·06': 'does not apply' };
+      const absn = v => (v && typeof v === 'object' && !Array.isArray(v) && v.absn) ? v.absn : null;
+      const has = (it, code) => ['form', 'doors', 'date'].some(k => absn(it[k]) === code);
+      const formRank = f => { const i = FORM_ORDER.indexOf(f); return i < 0 ? FORM_ORDER.length : i; };
+
+      class Component extends DCLogic {
+        state = { items: null, meta: null, rooms: {}, door: 'all', st: 'all', type: 'all', q: '', byType: false, unmeas: false, focus: 0, status: '' };
+        rowEls = [];
+        filterRef = React.createRef();
+        clearRef = React.createRef();
+        regionEl = null;
+        regionRef = el => { this.regionEl = el; };
+        componentDidMount() {
+          Promise.all([
+            fetch('/home/plain-door.data.json').then(r => r.json()),
+            fetch('/home/house.rooms.json').then(r => r.json())
+          ]).then(([d, h]) => {
+            const rooms = {};
+            h.rooms.forEach(r => { rooms[r.id] = r; });
+            this.setState({ items: d.items, meta: d, rooms });
+          }).catch(e => this.setState({ status: 'The index data did not load: ' + (e && e.message ? e.message : String(e)) }));
+        }
+
+        visible() {
+          const { items, door, st, type, q, unmeas, byType } = this.state;
+          let xs = (items || []).filter(it =>
+            (door === 'all' || (Array.isArray(it.doors) && it.doors.includes(door))) &&
+            (st === 'all' || it.state === st) &&
+            (type === 'all' || it.form === type) &&
+            (!q || (it.id + ' ' + it.title).toLowerCase().includes(q.toLowerCase())) &&
+            (!unmeas || has(it, 'ABSN·03')));
+          if (byType) xs = [...xs].sort((a, b) => (formRank(a.form) - formRank(b.form)) || a.id.localeCompare(b.id));
+          return xs;
+        }
+
+        // A holding's own href wins; otherwise its room's path.
+        hrefOf(it) {
+          const room = this.state.rooms[it.room];
+          return it.href || (room && room.path) || null;
+        }
+
+        refocus(fromRow) {
+          const lost = !this.regionEl || !this.regionEl.contains(document.activeElement);
+          if (!fromRow && !lost) return;
+          if (this.visible().length) this.focusRow(0);
+          else if (this.clearRef.current) this.clearRef.current.focus();
+        }
+
+        focusRow(i) {
+          this.setState({ focus: i }, () => { const el = this.rowEls[i]; if (el) el.focus(); });
+        }
+
+        onKey = e => {
+          const t = e.target;
+          if (t.tagName === 'INPUT' || e.altKey || e.ctrlKey || e.metaKey) return;
+          const vis = this.visible();
+          const n = vis.length;
+          const onRow = !!(t.hasAttribute && t.hasAttribute('data-title'));
+          const at = onRow ? this.rowEls.indexOf(t) : -1;
+          const cur = at >= 0 ? at : Math.min(this.state.focus, Math.max(n - 1, 0));
+          switch (e.key) {
+            case 'ArrowDown':
+            case 'ArrowUp': {
+              if (!n) return;
+              e.preventDefault();
+              const j = !onRow ? cur : e.key === 'ArrowDown' ? Math.min(cur + 1, n - 1) : Math.max(cur - 1, 0);
+              this.focusRow(j);
+              break;
+            }
+            case 'Enter':
+              if (onRow && vis[cur] && !this.hrefOf(vis[cur])) { e.preventDefault(); this.setState({ status: vis[cur].id + ' is ' + vis[cur].state + '. Its room has no route, so it is not a link.' }); }
+              break;
+            case '/':
+              e.preventDefault();
+              if (this.filterRef.current) this.filterRef.current.focus();
+              break;
+            case 't': case 'T':
+              e.preventDefault();
+              this.setState(s => ({ byType: !s.byType, focus: 0, status: s.byType ? 'Sorted by id.' : 'Sorted by type.' }), () => this.refocus(onRow));
+              break;
+            case 'c': case 'C':
+              e.preventDefault();
+              this.setState(s => ({ unmeas: !s.unmeas, focus: 0, status: s.unmeas ? 'Showing every row.' : 'Showing rows to be confirmed only.' }), () => this.refocus(onRow));
+              break;
+          }
+        };
+
+        group(label, key, values) {
+          const cur = this.state[key];
+          const mk = (v, text) => ({ label: text, pressed: cur === v, onClick: () => this.setState({ [key]: v, focus: 0 }) });
+          return { label, buttons: [mk('all', 'All'), ...values.map(v => mk(v, v))] };
+        }
+
+        renderVals() {
+          const { items, meta, q, byType, status } = this.state;
+          const all = items || [];
+          const vis = this.visible();
+          const n = all.length;
+          const focus = Math.min(this.state.focus, Math.max(vis.length - 1, 0));
+          const forms = FORM_ORDER.filter(f => all.some(it => it.form === f));
+          this.rowEls = [];
+          // Every three-door combination fills the hidden sizer row, so filtering never changes the column widths.
+          const triples = [];
+          for (let i = 0; i < DOORS.length; i++) for (let j = i + 1; j < DOORS.length; j++) for (let k = j + 1; k < DOORS.length; k++) triples.push(DOORS[i] + ' ' + DOORS[j] + ' ' + DOORS[k]);
+          const rows = vis.map((it, i) => {
+            const href = this.hrefOf(it);
+            const link = !!href;
+            const dA = absn(it.date), oA = absn(it.doors), fA = absn(it.form);
+            return {
+              id: it.id, title: it.title, state: it.state,
+              // Roving tabindex: only the focused row is in the Tab order, and the arrow keys move between rows.
+              tab: i === focus ? 0 : -1,
+              ref: el => { this.rowEls[i] = el; },
+              onFocus: () => { if (this.state.focus !== i) this.setState({ focus: i }); },
+              isLink: link, notLink: !link,
+              href,
+              isGated: it.state === 'GATED', notGated: it.state !== 'GATED',
+              formAbsent: !!fA, formPresent: !fA, formAbsn: fA, formWord: WORDS[fA], form: fA ? '' : it.form,
+              doorsAbsent: !!oA, doorsPresent: !oA, doorsAbsn: oA, doorsWord: WORDS[oA],
+              doorsText: Array.isArray(it.doors) ? it.doors.join(' ') : '',
+              dateAbsent: !!dA, datePresent: !dA, dateAbsn: dA, dateWord: WORDS[dA], date: dA ? '' : it.date
+            };
+          });
+          const count = code => all.filter(it => has(it, code)).length;
+          return {
+            version: meta ? meta.version : '',
+            total: String(n),
+            showing: vis.length + ' of ' + n,
+            unmeasCount: count('ABSN·03') + ' of ' + n,
+            unsurvCount: count('ABSN·04') + ' of ' + n,
+            scopeGaps: meta ? meta.scope.gaps : '',
+            groups: [this.group('Door', 'door', DOORS), this.group('State', 'st', STATES), this.group('Type', 'type', forms)],
+            rows,
+            szForm: FORM_ORDER, szDoors: triples, szStates: STATES, szWords: Object.values(WORDS),
+            rowCount: vis.length + 1,
+            isEmpty: !!items && vis.length === 0,
+            clearAll: () => this.setState({ door: 'all', st: 'all', type: 'all', q: '', unmeas: false, focus: 0, status: 'Filters cleared.' }, () => this.focusRow(0)),
+            q,
+            onQuery: e => this.setState({ q: e.target.value, focus: 0 }),
+            filterRef: this.filterRef,
+            clearRef: this.clearRef,
+            regionRef: this.regionRef,
+            sortId: byType ? null : 'ascending',
+            sortType: byType ? 'ascending' : null,
+            status,
+            onKey: this.onKey
+          };
+        }
+      }
+    </script>
+  </body>
+</html>

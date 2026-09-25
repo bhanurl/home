@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <script src="/home/vendor/react.production.min.js"></script>
+    <script src="/home/vendor/react-dom.production.min.js"></script>
+    <script src="/home/support.js"></script>
+  </head>
+  <body>
+    <x-dc>
+      <helmet>
+        <title>Nothing here yet – Bhanu Cheepurupalli</title>
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+          href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400;1,400&amp;family=Pinyon+Script&amp;display=swap"
+          rel="stylesheet"
+        />
+        <style>
+          html,
+          body {
+            margin: 0;
+            padding: 0;
+            background: #f2ead6;
+            color: #1f2e4d;
+          }
+          * {
+            box-sizing: border-box;
+          }
+          a {
+            color: #456264;
+          }
+          a:hover {
+            color: #456264;
+          }
+          [data-script] {
+            font-size: 60px;
+          }
+          @container page (max-width: 767px) {
+            [data-script] {
+              font-size: 40px;
+            }
+          }
+          a[data-link] {
+            position: relative;
+            color: #456264;
+            text-decoration: underline;
+            text-decoration-thickness: 1px;
+            text-underline-offset: 3px;
+          }
+          a[data-link]:hover {
+            text-decoration-thickness: 2px;
+          }
+          /* Widens each link's tap target to at least 44 by 44 px without moving the layout. */
+          a[data-link]::after {
+            content: "";
+            position: absolute;
+            top: calc(50% - 22px);
+            bottom: calc(50% - 22px);
+            left: 50%;
+            width: max(100%, 44px);
+            transform: translateX(-50%);
+          }
+          a[data-link]:focus {
+            outline: none;
+          }
+          a[data-link]:focus-visible {
+            outline: 1px solid #1f2e4d;
+            outline-offset: 2px;
+          }
+        </style>
+      </helmet>
+      <div data-page="" style="container-type: inline-size; container-name: page">
+        <main
+          style="
+            min-height: 100vh;
+            background: #f2ead6;
+            color: #1f2e4d;
+            padding: clamp(16px, 4vw, 56px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+          "
+        >
+          <h1
+            data-script=""
+            style="
+              margin: 0;
+              font-family: &quot;Pinyon Script&quot;, cursive;
+              font-weight: 400;
+              line-height: 1.2;
+              white-space: nowrap;
+              color: #1f2e4d;
+            "
+            >Nothing here yet</h1
+          >
+          <nav
+            style="
+              display: flex;
+              flex-wrap: wrap;
+              justify-content: center;
+              gap: 12px 24px;
+              font-family: &quot;EB Garamond&quot;, Georgia, serif;
+              font-size: 18px;
+              line-height: 1.5;
+            "
+          >
+            <a data-link="" href="/home/">Back to the house</a>
+            <a data-link="" href="/home/index">Index</a>
+          </nav>
+        </main>
+      </div>
+    </x-dc>
+    <script type="text/x-dc" data-dc-script>
+      class Component extends DCLogic {}
+    </script>
+  </body>
+</html>

@@ -1,0 +1,667 @@
+{
+  "canvas": {
+    "plan": {
+      "w": 680,
+      "h": 684,
+      "paper": [
+        40,
+        74,
+        600,
+        556
+      ],
+      "camera": "scale(1.06) rotateX(55deg) rotateZ(-26deg)"
+    },
+    "elev": {
+      "w": 1600,
+      "h": 1380,
+      "spine": [
+        700,
+        200
+      ],
+      "colLeft": [
+        348,
+        320
+      ],
+      "colRight": [
+        932,
+        320
+      ],
+      "floors": [
+        330,
+        560,
+        790
+      ]
+    },
+    "opening": {
+      "sheet": [
+        240,
+        60,
+        1120,
+        1210
+      ],
+      "niche": [
+        "M280 1030V600a520 520 0 011040 0v430Z",
+        "M304 1030V602a496 496 0 01992 0v428",
+        "M280 1030h1040"
+      ],
+      "houseScale": 0.85,
+      "houseOrigin": [
+        800,
+        1030
+      ],
+      "ground": 1030
+    },
+    "map": {
+      "PS": 1.72,
+      "PX": 124.5,
+      "PY": 14.9,
+      "camera": {
+        "scale": 0.92,
+        "rotateX": 55,
+        "rotateZ": -26,
+        "origin": [
+          800,
+          690
+        ]
+      }
+    }
+  },
+  "riseOrder": [
+    "porch",
+    "entrance",
+    "archives",
+    "bench",
+    "writing",
+    "study",
+    "frontdoor",
+    "den",
+    "workshop",
+    "reading",
+    "listening"
+  ],
+  "neverRises": [
+    "ext",
+    "film",
+    "library",
+    "closet",
+    "garden",
+    "grounds",
+    "ruled-field"
+  ],
+  "rooms": [
+    {
+      "id": "frontdoor",
+      "name": "front door",
+      "path": "/home/",
+      "zone": "0",
+      "state": "built · night",
+      "plan": [
+        284,
+        140,
+        180,
+        92
+      ],
+      "z": 42,
+      "elev": [
+        700,
+        330,
+        200,
+        208
+      ],
+      "rise": 0.72,
+      "register": {
+        "code": "MARK·01",
+        "setA": "Arch",
+        "setB": "arch mark (small)",
+        "sheet": 1,
+        "bind": "BOUND BOTH"
+      },
+      "absence": null,
+      "meta": "The instruments: index, map, search, cv, colophon. Always lit, never decorated.",
+      "construction": {
+        "head": "square",
+        "lamp": "always",
+        "lampAt": [
+          855,
+          414
+        ]
+      }
+    },
+    {
+      "id": "porch",
+      "name": "porch",
+      "path": "/home/porch",
+      "zone": "2",
+      "state": "built",
+      "plan": [
+        230,
+        460,
+        220,
+        34
+      ],
+      "z": 34,
+      "elev": [
+        700,
+        790,
+        200,
+        204
+      ],
+      "rise": 0,
+      "register": {
+        "code": "SPOT·03",
+        "setA": "Two birds",
+        "setB": "NONE",
+        "sheet": null,
+        "bind": "BOUND A"
+      },
+      "absence": null,
+      "meta": "Outcomes hang here. Open to the street along one edge, so the room is never finished.",
+      "construction": {
+        "head": "entablature"
+      }
+    },
+    {
+      "id": "entrance",
+      "name": "entrance",
+      "path": "/home/entrance",
+      "zone": "3",
+      "state": "built",
+      "plan": [
+        300,
+        240,
+        68,
+        104
+      ],
+      "z": 19,
+      "elev": [
+        700,
+        560,
+        200,
+        208
+      ],
+      "rise": 0.12,
+      "register": {
+        "code": "LUME·02",
+        "setA": "—",
+        "setB": "keyline required",
+        "sheet": null,
+        "bind": "PROPOSED"
+      },
+      "absence": null,
+      "meta": "One wall, one current piece. The wall is the whole room.",
+      "construction": {
+        "head": "round"
+      }
+    },
+    {
+      "id": "den",
+      "name": "den",
+      "path": "/home/den",
+      "zone": "0",
+      "state": "built · night",
+      "plan": [
+        140,
+        140,
+        136,
+        92
+      ],
+      "z": 32,
+      "elev": [
+        348,
+        330,
+        320,
+        208
+      ],
+      "rise": 0.84,
+      "register": {
+        "code": "ABSN·03",
+        "setA": "Hatch",
+        "setB": "hatch",
+        "sheet": 23,
+        "bind": "BOUND BOTH"
+      },
+      "absence": null,
+      "meta": "Bench and build. The instruments run after dark and the room is quiet by day.",
+      "construction": {
+        "head": "segment"
+      }
+    },
+    {
+      "id": "workshop",
+      "name": "workshop",
+      "path": "/home/workshop",
+      "zone": "0",
+      "state": "built · night",
+      "plan": [
+        472,
+        140,
+        152,
+        92
+      ],
+      "z": 28,
+      "elev": [
+        932,
+        330,
+        320,
+        208
+      ],
+      "rise": 0.96,
+      "register": {
+        "code": "FRAM·02",
+        "setA": "Cartouche",
+        "setB": "cartouche",
+        "sheet": 16,
+        "bind": "BOUND BOTH"
+      },
+      "absence": null,
+      "meta": "Tools standing, an exhibit up. Everything here is mid-cut.",
+      "construction": {
+        "head": "flat",
+        "ceiling": true,
+        "sxL": 0.7
+      }
+    },
+    {
+      "id": "writing",
+      "name": "writing wing",
+      "path": "/home/writing",
+      "zone": "2",
+      "state": "built",
+      "plan": [
+        140,
+        240,
+        156,
+        104
+      ],
+      "z": 26,
+      "elev": [
+        348,
+        560,
+        320,
+        208
+      ],
+      "rise": 0.48,
+      "register": {
+        "code": "SPOT·01",
+        "setA": "Open book",
+        "setB": "NONE",
+        "sheet": null,
+        "bind": "BOUND A"
+      },
+      "absence": null,
+      "meta": "Pieces now, tabs later. Tabs earn their keep only once there is enough to sort.",
+      "construction": {
+        "head": "arch"
+      }
+    },
+    {
+      "id": "study",
+      "name": "study",
+      "path": "/home/study",
+      "zone": "2",
+      "state": "built",
+      "plan": [
+        376,
+        240,
+        248,
+        104
+      ],
+      "z": 50,
+      "elev": [
+        932,
+        560,
+        320,
+        208
+      ],
+      "rise": 0.6,
+      "register": {
+        "code": "SPOT·02",
+        "setA": "Hand & plumb",
+        "setB": "NONE",
+        "sheet": null,
+        "bind": "BOUND A"
+      },
+      "absence": null,
+      "meta": "The tallest room: things hang, things sit on the bench, things are in build. A gated holding waits out on the grounds.",
+      "construction": {
+        "head": "arch"
+      }
+    },
+    {
+      "id": "archives",
+      "name": "archives",
+      "path": "/home/archives",
+      "zone": "2",
+      "state": "built · witness",
+      "plan": [
+        140,
+        352,
+        240,
+        100
+      ],
+      "z": 28,
+      "elev": [
+        348,
+        790,
+        320,
+        204
+      ],
+      "rise": 0.24,
+      "register": {
+        "code": "SPOT·04",
+        "setA": "Folded map",
+        "setB": "NONE",
+        "sheet": null,
+        "bind": "BOUND A"
+      },
+      "absence": null,
+      "meta": "Photographs, testimony, states. Witness marks flag what has a source behind it.",
+      "construction": {
+        "head": "arch"
+      }
+    },
+    {
+      "id": "bench",
+      "name": "bench",
+      "path": "/home/bench",
+      "zone": "1",
+      "state": "built · the pulse",
+      "plan": [
+        388,
+        352,
+        236,
+        100
+      ],
+      "z": 24,
+      "elev": [
+        932,
+        790,
+        320,
+        204
+      ],
+      "rise": 0.36,
+      "register": {
+        "code": "ANNO·04",
+        "setA": "Double rule",
+        "setB": "triple rule",
+        "sheet": 21,
+        "bind": "REDRAW"
+      },
+      "absence": null,
+      "meta": "A weekly leaf and the pass logs. The only room in the house that keeps time.",
+      "construction": {
+        "head": "arch"
+      }
+    },
+    {
+      "id": "garden",
+      "name": "garden",
+      "path": "/home/garden",
+      "zone": "3",
+      "state": "pegged out",
+      "plan": [
+        140,
+        502,
+        484,
+        86
+      ],
+      "z": 5,
+      "elev": [
+        348,
+        1075,
+        904,
+        88
+      ],
+      "rise": null,
+      "register": {
+        "code": "LUME·04",
+        "setA": "—",
+        "setB": "keyline required",
+        "sheet": null,
+        "bind": "PROPOSED"
+      },
+      "absence": "dashed",
+      "meta": "Zotero feeds the bench from here. Reading and listening are standing; film, library and closet are line on the ground."
+    },
+    {
+      "id": "reading",
+      "name": "reading",
+      "path": "/home/garden/reading",
+      "zone": "1",
+      "state": "built",
+      "plan": [
+        156,
+        534,
+        96,
+        42
+      ],
+      "z": 16,
+      "elev": [
+        393,
+        1089,
+        150,
+        60
+      ],
+      "rise": 1.08,
+      "register": {
+        "code": "BULL·01",
+        "setA": "NONE",
+        "setB": "circular ornament",
+        "sheet": 12,
+        "bind": "BOUND B"
+      },
+      "absence": null,
+      "meta": "Goodreads. Live, and pulling."
+    },
+    {
+      "id": "listening",
+      "name": "listening",
+      "path": "/home/garden/listening",
+      "zone": "1",
+      "state": "built",
+      "plan": [
+        260,
+        534,
+        96,
+        42
+      ],
+      "z": 16,
+      "elev": [
+        559,
+        1089,
+        150,
+        60
+      ],
+      "rise": 1.2,
+      "register": {
+        "code": "BULL·01",
+        "setA": "NONE",
+        "setB": "circular ornament",
+        "sheet": 12,
+        "bind": "BOUND B"
+      },
+      "absence": null,
+      "meta": "Spotify. Live, and pulling."
+    },
+    {
+      "id": "grounds",
+      "name": "the grounds",
+      "path": "/home/method",
+      "zone": "0",
+      "state": "pegged out",
+      "plan": [
+        140,
+        602,
+        484,
+        48
+      ],
+      "z": 3,
+      "elev": [
+        300,
+        1180,
+        1000,
+        56
+      ],
+      "rise": null,
+      "register": {
+        "code": "ABSN·04",
+        "setA": "Hatch, 2nd weight",
+        "setB": "2nd weight",
+        "sheet": 23,
+        "bind": "REDRAW"
+      },
+      "absence": "hatch-2",
+      "meta": "Method bedrock under everything: laws, survey, development, demography, information, environment."
+    },
+    {
+      "id": "ruled-field",
+      "name": null,
+      "path": null,
+      "zone": "0",
+      "state": "gated — not queued",
+      "plan": [
+        548,
+        610,
+        76,
+        32
+      ],
+      "z": 9,
+      "elev": [
+        1150,
+        1180,
+        150,
+        56
+      ],
+      "rise": null,
+      "register": {
+        "code": "ABSN·01",
+        "setA": "Scrub, rust",
+        "setB": "NONE",
+        "sheet": null,
+        "bind": "BOUND A"
+      },
+      "absence": "ruled-empty",
+      "meta": "Out on the grounds, ruled. Gated is a state, never a decoration, and it does not become a plan by waiting."
+    },
+    {
+      "id": "ext",
+      "name": "ext.",
+      "path": null,
+      "zone": "0",
+      "state": "pegged out",
+      "plan": [
+        628,
+        514,
+        36,
+        64
+      ],
+      "z": 0,
+      "elev": [
+        1264,
+        1086,
+        76,
+        77
+      ],
+      "rise": null,
+      "register": {
+        "code": "ABSN·05",
+        "setA": "NONE",
+        "setB": "dashed frame",
+        "sheet": "raw 05_42_28",
+        "bind": "BOUND B"
+      },
+      "absence": "dashed",
+      "meta": "Strung with pegs and line. Nothing stands here, and nothing is queued to."
+    },
+    {
+      "id": "film",
+      "name": "film",
+      "path": null,
+      "zone": "0",
+      "state": "pegged out",
+      "plan": [
+        364,
+        534,
+        76,
+        42
+      ],
+      "z": 0,
+      "elev": [
+        725,
+        1089,
+        150,
+        60
+      ],
+      "rise": null,
+      "register": {
+        "code": "ABSN·05",
+        "setA": "NONE",
+        "setB": "dashed frame",
+        "sheet": "raw 05_42_28",
+        "bind": "BOUND B"
+      },
+      "absence": "dashed",
+      "meta": "Waits. Pegged, but not queued."
+    },
+    {
+      "id": "library",
+      "name": "library",
+      "path": null,
+      "zone": "0",
+      "state": "pegged out",
+      "plan": [
+        448,
+        534,
+        76,
+        42
+      ],
+      "z": 0,
+      "elev": [
+        891,
+        1089,
+        150,
+        60
+      ],
+      "rise": null,
+      "register": {
+        "code": "ABSN·05",
+        "setA": "NONE",
+        "setB": "dashed frame",
+        "sheet": "raw 05_42_28",
+        "bind": "BOUND B"
+      },
+      "absence": "dashed",
+      "meta": "Pegged out in the garden. No drawing bound to it yet."
+    },
+    {
+      "id": "closet",
+      "name": "closet",
+      "path": null,
+      "zone": "0",
+      "state": "pegged out",
+      "plan": [
+        532,
+        534,
+        72,
+        42
+      ],
+      "z": 0,
+      "elev": [
+        1057,
+        1089,
+        150,
+        60
+      ],
+      "rise": null,
+      "register": {
+        "code": "ABSN·05",
+        "setA": "NONE",
+        "setB": "dashed frame",
+        "sheet": "raw 05_42_28",
+        "bind": "BOUND B"
+      },
+      "absence": "dashed",
+      "meta": "Pegged out in the garden. No drawing bound to it yet."
+    }
+  ]
+}
